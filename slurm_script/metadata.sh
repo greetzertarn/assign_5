@@ -84,3 +84,15 @@ sudo systemctl start ntpd
 # trying to start slurm
  sudo systemctl enable slurmdbd.service
  sudo systemctl start slurmdbd.service
+ 
+ sudo touch /scratch/dbd.fin
+
+#wait for callback from head node
+while [ ! -f /scratch/head.fin ]
+do
+  sleep 5
+done
+
+ yes | sudo sacctmgr add cluster cluster
+ 
+ sudo touch /scratch/cluster.fin
