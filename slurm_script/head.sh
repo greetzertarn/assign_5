@@ -107,3 +107,16 @@ sudo touch /scratch/compute_done.txt
 sudo systemctl enable slurmctld.service
 sudo systemctl start slurmctld.service
 sudo systemctl status slurmctld.service
+
+#notify metadata slurmctld daemon is up
+sudo touch /scratch/head.fin
+
+#wait for callback from metadata
+while [ ! -f /scratch/cluster.fin ]
+do
+  sleep 5
+done
+
+# restart slurmctld daemon
+sudo systemctl restart slurmctld
+
