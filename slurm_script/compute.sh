@@ -71,10 +71,15 @@ sudo chkconfig ntpd on
 sudo ntpdate pool.ntp.org
 sudo systemctl start ntpd
 
+#enable slurm daemon
+while [ ! -f /scratch/dbd.fin ]
+do
+  sleep 5
+done
 # trying to start slurm
 sudo systemctl enable slurmd.service
 sudo systemctl start slurmd.service
 sudo systemctl status slurmd.service
 
-# telling server that services are done
-sudo echo "I am done" > /scratch/compute_done.txt
+sudo touch /scratch/d.fin
+
