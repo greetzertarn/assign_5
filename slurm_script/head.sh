@@ -96,12 +96,6 @@ sudo chkconfig ntpd on
 sudo ntpdate pool.ntp.org
 sudo systemctl start ntpd
 
-# waiting for compute nodes to start, don't know if this is required
-while [ ! -f /scratch/compute_done.txt ] 
-do
-  sleep 5
-done
-sudo touch /scratch/compute_done.txt
 
 # trying to start slurm 
 sudo systemctl enable slurmctld.service
